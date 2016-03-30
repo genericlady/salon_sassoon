@@ -7,11 +7,11 @@ gem 'chronic'
 gem 'database_cleaner',
   git: 'https://github.com/bmabey/database_cleaner.git'
 gem 'require_all'
+gem 'pry'
 
 group :development do
   gem 'shotgun'
   gem 'sqlite3'
-  gem 'pry'
 end
 
 group :test do
