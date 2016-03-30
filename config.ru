@@ -6,6 +6,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-# use OwnerController
+# use UserController
 # use SalonController
+# use AppointmentController
 run ApplicationController
