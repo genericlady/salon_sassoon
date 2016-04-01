@@ -7,4 +7,7 @@ configure :development do
   set :database, "sqlite3:db/sassoon#{ENV['SINATRA_ENV']}.db"
 end
 
+Time.zone = "UTC"
+Chronic.time_class = Time.zone
+
 require_all 'app'

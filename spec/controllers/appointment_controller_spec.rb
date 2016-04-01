@@ -48,9 +48,8 @@ describe AppointmentController do
       appointment.save
       get "/appointments/#{appointment.id}"
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to include("2016-04-12 17:00:00 -0400")
-      expect(last_response.body).to include("2016-04-12 18:00:00 -0400")
-      binding.pry
+      expect(last_response.body).to include("2016-04-12 17:00:00 UTC")
+      expect(last_response.body).to include("2016-04-12 18:00:00 UTC")
     end
   end
 
