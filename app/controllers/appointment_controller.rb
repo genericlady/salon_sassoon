@@ -18,8 +18,9 @@ class AppointmentController < ApplicationController
       redirect "/appointments/new?error=invalid appointment"
     end
     @appointment = Appointment.new
-    @appointment.start = Chronic.parse(params[:start])
-    @appointment.finish = Chronic.parse(params[:finish])
+    @appointment.date = params[:date]
+    @appointment.start = Chronic.parse(params[:date] + ' ' + params[:start])
+    @appointment.finish = Chronic.parse(params[:date] + ' ' + params[:finish])
     @appointment.save
     redirect '/appointments'
   end

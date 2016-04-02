@@ -1,11 +1,13 @@
 <h1>Create a New Appointment</h1>
 <form action="/appointments" method="post">
-  <h2>Date MM/DD/YEAR</h2>
+  <label>Date MM/DD/YEAR</label>
   <input type="text" name="date">
-  Appointment Time Start e.g., 4:00pm:
+  <br>
+  <label>Appointment Time Start e.g., 4:00pm:</label>
   <input type="datetime-local" name="start">
   <br>
-  Appointment Time Finish:
+  <label>Appointment Time Finish:</label>
   <input type="datetime-local" name="finish">
+  <br>
   <button type="submit" name="submit">Create New Appointment</button>
 </form>

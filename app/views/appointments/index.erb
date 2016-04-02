@@ -1,8 +1,14 @@
 <% @appointments.each do |appt| %>
-  <%= appt.start %>
-  <br>
-  <%= appt.finish %>
-  <br>
-  <a href="/appointments/<%=appointment.id%>/edit">Edit</a>
+  <h2>Appointment Date</h2>
+  <h3><%= appt.date %></h3>
 
+  <h2>Start Time:</h2>
+  <h3><%= appt.start %></h3>
+
+  <h2>Finish Time</h2>
+  <h3><%= appt.finish %></h3>
+
+  <a href="/appointments/<%=appt.id%>/edit">Edit</a>
+
+  <hr>
 <% end %>
