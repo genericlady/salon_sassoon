@@ -43,8 +43,8 @@ describe AppointmentController do
   describe 'List Individual Appointment' do
     it 'get /appointments/show/:id' do
       appointment = FactoryGirl.build(:appointment)
-      appointment.start = Appointment.parse_datetime('4/12/2016 5:00pm')
-      appointment.finish = Appointment.parse_datetime('4/12/2016 6:00pm')
+      appointment.start = Chronic.parse('4/12/2016 5:00pm')
+      appointment.finish = Chronic.parse('4/12/2016 6:00pm')
       appointment.save
       get "/appointments/#{appointment.id}"
       expect(last_response.status).to eq(200)

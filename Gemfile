@@ -8,6 +8,7 @@ gem 'database_cleaner',
   git: 'https://github.com/bmabey/database_cleaner.git'
 gem 'require_all'
 gem 'pry'
+gem 'bcrypt'
 
 group :development do
   gem 'shotgun'

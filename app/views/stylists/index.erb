@@ -1,0 +1,8 @@
+<% @stylists.each do |stylist| %>
+  <%= stylist.start %>
+  <br>
+  <%= stylist.finish %>
+  <br>
+  <a href="/stylists/<%=stylist.id%>/edit">Edit</a>
+
+<% end %>

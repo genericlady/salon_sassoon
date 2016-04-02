@@ -1,7 +1,4 @@
 class Appointment < ActiveRecord::Base
-
-  def self.parse_datetime str
-    Chronic.parse str
-  end
-
+  belongs_to :user
+  belongs_to :stylist
 end
