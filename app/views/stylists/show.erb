@@ -1,7 +1,2 @@
-<%= @stylist.date %>
-<%= @stylist.start %><br />
- <%= @stylist.finish %> <br />
-
- <h2>Stylist</h2>
- <%= @stylist.stylist.name %>
+ <h2>Stylist Name: <%= @stylist.name.capitalize %></h2>
  <a href="/stylists/<%=@stylist.id%>/edit">Edit</a>
