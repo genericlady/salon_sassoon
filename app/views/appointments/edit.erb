@@ -1,8 +1,8 @@
-<h1>Edit <%= @appointment.name %></h1>
+<h1>Edit Appointment on <%= @appointment.date %></h1>
 
 <form action="/appointments/<%=@appointment.id %>" method="POST">
   <label> Appointment Date </label>
-  <input type="text" name="date" value="<%=@appointment.name %>"> </br>
+  <input type="text" name="date" value="<%=@appointment.date %>"> </br>
 
   <label> Appointment Start </label>
   <input type="text" name="start" value="<%=@appointment.start %>"> </br>
