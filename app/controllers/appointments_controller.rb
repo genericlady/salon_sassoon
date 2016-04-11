@@ -1,13 +1,22 @@
 class AppointmentsController < ApplicationController
+
   get '/appointments' do
+    # before every block
     redirect_if_not_logged_in
     @appointments = Appointment.all
-    erb :'appointments/index'
+    if @appointments.empty?
+      erb :'appointments/new'
+    else
+      erb :'appointments/index'
+    end
   end
 
   get '/appointments/new' do
     redirect_if_not_logged_in
-    @appointment = Appointment.new
+    @user = current_user
+    @appointment = @user.appointments.build appointment_params
+
+    # after every block check for error message
     @error_message = params[:error]
     erb :'appointments/new'
   end
@@ -16,10 +25,11 @@ class AppointmentsController < ApplicationController
     redirect_if_not_logged_in
     if Appointment.valid_params?(appointment_params)
       # @appointment = Appointment.new_by_hash(appointment_params)
-      @appointment = Appointment.new
-      @appointment.date = appointment_date
-      @appointment.start = appointment_start
-      @appointment.finish = appointment_finish
+      @user = current_user
+      @appointment = @user.appointments.build appointment_params
+      @appointment.date = Chronic.parse(appointment_date)
+      @appointment.start = Chronic.parse(appointment_start)
+      @appointment.finish = Chronic.parse(appointment_finish)
       @appointment.save
       redirect '/appointments'
     else
@@ -36,8 +46,12 @@ class AppointmentsController < ApplicationController
 
   post '/appointments/:id' do
     redirect_if_not_logged_in
+    # take a look here
     set_appointment
     if Appointment.valid_params?(appointment_params)
+      binding.pry
+      @user = current_user
+      @appointment = @user.appointments.build
       @appointment.date = appointment_date
       @appointment.start = Chronic.parse(appointment_start)
       @appointment.finish = Chronic.parse(appointment_finish)
@@ -54,31 +68,24 @@ class AppointmentsController < ApplicationController
     erb :'appointments/show'
   end
 
-  # helpers do
-  #   def partial(page, options={})
-  #     erb page, options.merge!(:layout => false)
-  #   end
-  # end
-  helpers do
-    def partial(template, *args)
-      options = args.extract_options!
-      options.merge!(:layout => false)
-      if collection = options.delete(:collection) then
-        collection.inject([]) do |buffer, member|
-          buffer << erb(template, options.merge(
-                                    :layout => false,
-                                    :locals => {template.to_sym => member}
-                                  )
-                       )
-        end.join("\n")
-      else
-        erb(template, options)
-      end
+  delete '/appointments/:id/delete' do
+    redirect_if_not_logged_in
+    set_appointment
+    if @appointment.user_id == current_user.id
+      @appointment.delete
+      redirect '/appointments/new'
+    else
+      redirect '/login'
     end
   end
 
   private
+  def appointment_hash
+
+  end
+
   def appointment_start
+    # '12/22/2016 4pm'
     appointment_date + ' ' + params[:appointment][:start]
   end
 

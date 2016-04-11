@@ -3,4 +3,9 @@
 <%= partial :'appointments/_appointment' %>
 <br>
 with: appointment_stylist_name
- <a href="/appointments/<%=@appointment.id%>/edit">Edit</a>
+<a href="/appointments/<%= @appointment.id %>/edit">Edit Appointment</a>
+<form action="/appointments/<%= @appointment.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+  <button type="submit">Delete Appointment</button>
+</form>

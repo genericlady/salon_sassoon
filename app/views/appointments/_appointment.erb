@@ -1,5 +1,6 @@
 <ul>
-  <li>Date:<%= @appointment.date%> </li>
+  <li>Appointment for <%= @appointment.user.username %></li>
+  <li>Date:<%= @appointment.date_string%> </li>
   <li>start: <%= @appointment.start_string %></li>
   <li>finish: <%= @appointment.finish_string %></li>
 </ul>

@@ -11,6 +11,22 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+    def partial(template, *args)
+      options = args.extract_options!
+      options.merge!(:layout => false)
+      if collection = options.delete(:collection) then
+        collection.reduce([]) do |memo, member|
+          memo << erb(template, options.merge(
+                                    :layout => false,
+                                    :locals => {template.to_sym => member}
+                                  )
+                       )
+        end.join("\n")
+      else
+        erb(template, options)
+      end
+    end
+
     def redirect_if_not_logged_in
       if !logged_in?
         redirect "/login?error=You have to be logged in to do that"

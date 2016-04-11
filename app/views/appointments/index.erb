@@ -1,15 +1,23 @@
-<% @appointments.each_with_index do |appt,i| %>
+<% @appointments.each_with_index do |appointment,i| %>
+
   <h2>Appointment #<%= i+1 %></h2>
+
   <h2>Appointment Date</h2>
-  <h3><%= appt.date %></h3>
+  <h3><%= appointment.date %></h3>
 
   <h2>Start Time:</h2>
-  <h3><%= appt.start_string %></h3>
+  <h3><%= appointment.start_string %></h3>
 
   <h2>Finish Time</h2>
-  <h3><%= appt.finish_string %></h3>
+  <h3><%= appointment.finish_string %></h3>
 
-  <a href="/appointments/<%=appt.id%>/edit">Edit</a>
+  <a href="/appointments/<%= appointment.id %>/edit">Edit</a>
+  <a href="/appointments/<%= appointment.id %>">Show</a>
+  <form action="/appointments/<%= appointment.id %>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+    <button type="submit">Delete Appointment</button>
+  </form>
 
   <hr>
 <% end %>

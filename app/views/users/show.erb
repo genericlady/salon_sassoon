@@ -1,4 +1,4 @@
-<p> Here are your Golf Bags, <%= @user.username %>
+<p> Here are your Appointments, <%= @user.username %>
 <% @user.appointments.each do |appointment| %>
   <ul>
     <li><a href="/appointments/<%=appointment.id%>"><%= appointment.date %></a></li>
