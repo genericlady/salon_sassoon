@@ -1,7 +1,6 @@
 class AppointmentsController < ApplicationController
 
   get '/appointments' do
-    # before every block
     redirect_if_not_logged_in
     @appointments = Appointment.all
     if @appointments.empty?
@@ -16,7 +15,6 @@ class AppointmentsController < ApplicationController
     @user = current_user
     @appointment = @user.appointments.build appointment_params
 
-    # after every block check for error message
     @error_message = params[:error]
     erb :'appointments/new'
   end
@@ -24,9 +22,9 @@ class AppointmentsController < ApplicationController
   post '/appointments' do
     redirect_if_not_logged_in
     if Appointment.valid_params?(appointment_params)
-      # @appointment = Appointment.new_by_hash(appointment_params)
       @user = current_user
-      @appointment = @user.appointments.build appointment_params
+      # refactored with build
+      @appointment = @user.appointments.build
       @appointment.date = Chronic.parse(appointment_date)
       @appointment.start = Chronic.parse(appointment_start)
       @appointment.finish = Chronic.parse(appointment_finish)
@@ -46,11 +44,11 @@ class AppointmentsController < ApplicationController
 
   post '/appointments/:id' do
     redirect_if_not_logged_in
-    # take a look here
     set_appointment
     if Appointment.valid_params?(appointment_params)
       binding.pry
       @user = current_user
+      # refactored with build
       @appointment = @user.appointments.build
       @appointment.date = appointment_date
       @appointment.start = Chronic.parse(appointment_start)
