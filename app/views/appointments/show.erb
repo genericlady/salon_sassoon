@@ -1,8 +1,6 @@
 <h2>Appointment</h2>
 
-date: <%= @appointment.date %>
-start: <%= @appointment.start %><br />
-finish: <%= @appointment.finish %> <br />
+<%= partial :'appointments/_appointment' %>
 <br>
-with: <%= @appointment.stylist.name %>
+with: appointment_stylist_name
  <a href="/appointments/<%=@appointment.id%>/edit">Edit</a>

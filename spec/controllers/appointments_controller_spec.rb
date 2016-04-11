@@ -7,7 +7,7 @@ the attributes as a hash.
 a fake ActiveRecord ID to the model and stubs out database interaction methods
 like (save).  This will make sure it raises exceptions if they are called.
 =end
-describe AppointmentController do
+describe AppointmentsController do
   # start: 2016-06-14 13:00:00 -0400
   # finish: 2016-06-14 14:00:00 -0400
   let(:appointment_stub) { FactoryGirl.build_stubbed(:appointment) }

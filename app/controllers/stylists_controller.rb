@@ -1,4 +1,4 @@
-class StylistController < ApplicationController
+class StylistsController < ApplicationController
 
   get '/stylists' do
     redirect_if_not_logged_in

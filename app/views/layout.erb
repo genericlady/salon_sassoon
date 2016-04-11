@@ -6,17 +6,19 @@
   </head>
   <body>
     <nav>
+      <ul>
       <% if logged_in? %>
 
-        <a href="/appointments/new"> Create Appointment </a>
-        <a href="/logout"> Log Out </a>
-        <p>Welcome, <%=current_user.username %></p>
+        <li><a href="/appointments/new"> Create Appointment </a></li>
+        <li><a href="/appointments">All appointments</a></li>
+        <li><a href="/logout"> Log Out </a></li>
+        <li><p>Welcome, <%=current_user.username %></p></li>
 
       <% else %>
-        <a href="/signup">Sign Up</a>
-        <a href="/login"> Sign In </a>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login"> Sign In </a></li>
       <%end %>
-
+      </ul>
     </nav>
     <div class="container">
       <h1>Salon Sassoon</h1>
