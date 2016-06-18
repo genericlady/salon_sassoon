@@ -78,10 +78,6 @@ class AppointmentsController < ApplicationController
   end
 
   private
-  def appointment_hash
-
-  end
-
   def appointment_start
     # '12/22/2016 4pm'
     appointment_date + ' ' + params[:appointment][:start]
